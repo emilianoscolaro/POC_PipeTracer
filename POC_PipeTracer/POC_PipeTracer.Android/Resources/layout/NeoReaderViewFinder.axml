@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/neoReaderViewFinderView">
+    <de.neom.neoreadersdk.Viewfinder14View xmlns:neoreadersdk="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/viewfinderview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        neoreadersdk:resolution="highest"
+        neoreadersdk:scaletype="crop"
+        neoreadersdk:debugoverlay="false"
+        neoreadersdk:shortEdge="0"
+        neoreadersdk:longEdge="0"
+        neoreadersdk:opacity="0" />
+<!--neoreadersdk:logo_gravity="top|left"
+  neoreadersdk:logo_marginLeft="8dp"
+  neoreadersdk:logo_marginTop="8dp"-->
+<!--<include android:id="@+id/splashview" layout="@layout/splashview" />-->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:background="@android:color/transparent"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:background="#50000000"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:padding="12dp">
+            <TextView
+                android:text="@Place a code in the camera viewfinder to scan it."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:gravity="center_vertical"
+                android:textSize="14dp"
+                android:background="@android:color/transparent"
+                android:textColor="#ffffff" />
+            <TextView
+                android:text="@PipeTracer® will scan Automatically"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:textColor="#ffffff"
+                android:textSize="14dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/OverallLengthContainer">
+            <TextView
+                android:text="Ov.Length:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblOvLength"
+                style="@style/camera_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtOvLength"
+                style="@style/camera_text"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/RunningLengthContainer">
+            <TextView
+                android:text="Rn.Length:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblRnLength"
+                style="@style/camera_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtRnLength"
+                android:layout_marginLeft="5dp"
+                style="@style/camera_text" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/WeightContainer">
+            <TextView
+                android:text="Weight:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblWeight"
+                style="@style/camera_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtWeight"
+                android:layout_marginLeft="5dp"
+                style="@style/camera_text" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/CountContainer">
+            <TextView
+                android:text="Count:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblCount"
+                style="@style/camera_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtCount"
+                android:layout_marginLeft="5dp"
+                style="@style/camera_text" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout3"
+                android:background="#50000000">
+                <TextView
+                    android:text="@Try to avoid shadows and glare.  Hold the device back about 6 inches from the code"
+                    android:id="@+id/textView3"
+                    android:textColor="#ffffffff"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="12dp" />
+            </LinearLayout>
+            <ImageButton
+                android:layout_marginLeft="12dip"
+                android:layout_marginRight="12dip"
+                android:layout_gravity="center_horizontal|bottom"
+                android:id="@+id/buttonZxingFlash"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/button_default"
+                android:src="@drawable/flash_icon"
+                android:layout_marginTop="12dip" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,109 @@
+<metadata>
+  <!-- Error CS0234: The type or namespace name `QuadCorners' does not exist in the namespace `DE.Neom.Neoreadersdk'. Are you missing an assembly reference?
+       
+       This problem is caused by the default unspecified visibility of
+       the QuadCorners Java class.
+
+       Note in particular the very end of the following line from
+       `obj/Debug/api.xml`:
+
+       <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="QuadCorners" static="false" visibility="">
+
+       The fix is to change the visibility so the type is available in
+       the binding. -->
+  <attr path="/api/package[@name='de.neom.neoreadersdk']/class[@name='QuadCorners']" name="visibility">public</attr>
+
+
+  <!-- Error CS0234: The type or namespace name `Object' does not exist in the namespace `DE.Neom.Java.Lang'. Are you missing an assembly reference?
+       
+       Example of the problem from a generated C# file:
+       `return (Java.Lang.Object) global::Java.Lang.Object.GetObject<global::Java.Lang.Object> (JNIEnv.CallObjectMethod  (Handle, id_get), JniHandleOwnership.TransferLocalRef);`
+
+       The C# type `Java.Lang.Object` is by default resolved to:
+       `DE.Neom.Java.Lang.Object`.
+
+       The easiest fix is to rename the `DE.Neom.Java.Lang` namespace -->
+  <attr path="/api/package[@name='de.neom.java.lang']" name="managedName">NeomJavaLang</attr>
+
+
+  <!-- Error CS0535: `DE.Neom.Neoreadersdk.Resolution' does not implement interface member `Java.Lang.IComparable.CompareTo(Java.Lang.Object)'
+       
+       Looking in the generated C# file, we see:
+       `public virtual int CompareTo (global::DE.Neom.Neoreadersdk.Resolution p0)`
+
+       The problem in this case is generic type erasurue. The fix is to
+       switch the paramater type to `Java.Lang.Object`. -->
+  <attr path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Resolution']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='de.neom.neoreadersdk.Resolution']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
+  <!-- Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder14View$AdView [public de.neom.neoreadersdk.Viewfinder14View$AdView(de.neom.neoreadersdk.Viewfinder14View,android.content.Context)] : de/neom/neoreadersdk/R
+       Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder14View$AdView [public de.neom.neoreadersdk.Viewfinder14View$AdView(de.neom.neoreadersdk.Viewfinder14View,android.content.Context,android.util.AttributeSet)] : de/neom/neoreadersdk/R
+
+       This problem is caused by a limitation in the bindings generator.
+       See also: https://bugzilla.xamarin.com/show_bug.cgi?id=18154#c7
+
+       The workaround is to add the skipped XML nodes by hand. Note that
+       this workaround does _not_ stop the warnings from appearing in
+       the build output, but it _does_ make the methods available in the
+       final C# binding. -->
+  <add-node path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Viewfinder14View.AdView']">
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder14View.AdView" static="false" type="de.neom.neoreadersdk.Viewfinder14View.AdView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder14View" />
+      <parameter name="context" type="android.content.Context" />
+    </constructor>
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder14View.AdView" static="false" type="de.neom.neoreadersdk.Viewfinder14View.AdView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder14View" />
+      <parameter name="context" type="android.content.Context" />
+      <parameter name="attributeSet" type="android.util.AttributeSet" />
+    </constructor>
+  </add-node>
+  
+  <!---Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder14View$DecodeThread [public de.neom.neoreadersdk.Viewfinder14View$DecodeThread(de.neom.neoreadersdk.Viewfinder14View,android.content.Context)] : de/neom/neoreadersdk/R -->
+  <add-node path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Viewfinder14View.DecodeThread']">
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder14View.DecodeThread" static="false" type="de.neom.neoreadersdk.Viewfinder14View.DecodeThread" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder14View" />
+      <parameter name="context" type="android.content.Context" />
+    </constructor>
+  </add-node>
+
+  <!---Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder14View$DrawView [public de.neom.neoreadersdk.Viewfinder14View$DrawView(de.neom.neoreadersdk.Viewfinder14View,android.content.Context)] : de/neom/neoreadersdk/R
+       Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder14View$DrawView [public de.neom.neoreadersdk.Viewfinder14View$DrawView(de.neom.neoreadersdk.Viewfinder14View,android.content.Context,android.util.AttributeSet)] : de/neom/neoreadersdk/R -->
+  <add-node path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Viewfinder14View.DrawView']">
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder14View.DrawView" static="false" type="de.neom.neoreadersdk.Viewfinder14View.DrawView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder14View" />
+      <parameter name="context" type="android.content.Context" />
+    </constructor>
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder14View.DrawView" static="false" type="de.neom.neoreadersdk.Viewfinder14View.DrawView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder14View" />
+      <parameter name="context" type="android.content.Context" />
+      <parameter name="attributeSet" type="android.util.AttributeSet" />
+    </constructor>
+  </add-node>
+
+  <!-- Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder5View$AdView [public de.neom.neoreadersdk.Viewfinder5View$AdView(de.neom.neoreadersdk.Viewfinder5View,android.content.Context)] : de/neom/neoreadersdk/R
+       Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder5View$AdView [public de.neom.neoreadersdk.Viewfinder5View$AdView(de.neom.neoreadersdk.Viewfinder5View,android.content.Context,android.util.AttributeSet)] : de/neom/neoreadersdk/R -->
+  <add-node path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Viewfinder5View.AdView']">
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder5View.AdView" static="false" type="de.neom.neoreadersdk.Viewfinder5View.AdView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder5View" />
+      <parameter name="context" type="android.content.Context" />
+    </constructor>
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder5View.AdView" static="false" type="de.neom.neoreadersdk.Viewfinder5View.AdView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder5View" />
+      <parameter name="context" type="android.content.Context" />
+      <parameter name="attributeSet" type="android.util.AttributeSet" />
+    </constructor>
+  </add-node>
+  
+  <!-- Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder5View$DrawView [public de.neom.neoreadersdk.Viewfinder5View$DrawView(de.neom.neoreadersdk.Viewfinder5View,android.content.Context)] : de/neom/neoreadersdk/R
+       Warning J2XA001: missing class error was raised while reflecting de.neom.neoreadersdk.Viewfinder5View$DrawView [public de.neom.neoreadersdk.Viewfinder5View$DrawView(de.neom.neoreadersdk.Viewfinder5View,android.content.Context,android.util.AttributeSet)] : de/neom/neoreadersdk/R -->
+  <add-node path="/api/package[@name='de.neom.neoreadersdk']/class[@name='Viewfinder5View.DrawView']">
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder5View.DrawView" static="false" type="de.neom.neoreadersdk.Viewfinder5View.DrawView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder5View" />
+      <parameter name="context" type="android.content.Context" />
+    </constructor>
+    <constructor deprecated="not deprecated" final="false" name="Viewfinder5View.DrawView" static="false" type="de.neom.neoreadersdk.Viewfinder5View.DrawView" visibility="public">
+      <parameter name="viewFinder" type="de.neom.neoreadersdk.Viewfinder5View" />
+      <parameter name="context" type="android.content.Context" />
+      <parameter name="attributeSet" type="android.util.AttributeSet" />
+    </constructor>
+  </add-node>
+</metadata>

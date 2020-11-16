@@ -1,0 +1,83 @@
+{
+    "project_info": {
+        "project_number": "103564391",
+        "firebase_url": "https://tenarispipetracer-5f7a8.firebaseio.com",
+        "project_id": "5f7a8",
+        "storage_bucket": "5f7a8.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "android:70b39f52f813b546db9882",
+                "android_client_info": {
+                    "package_name": "com.tenaris.digitaltally"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "1038668564391-g3kd5itddr2se0iuf5o7bc4o6eaj7k4g.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBMhAgNZYNsOxCJ82wbrs83P7TG9K6mR74"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "1038668564391-g3kd5itddr2se0iuf5o7bc4o6eaj7k4g.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "1038668564391-k2ti36dtt9gdg8tguiafa9t49jdd1q37.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.tenaris.digitaltally"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:1038668564391:android:5f6ddab86a8a452adb9882",
+                "android_client_info": {
+                    "package_name": "com.tenaris.digitaltally_dev"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "1038668564391-g3kd5itddr2se0iuf5o7bc4o6eaj7k4g.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBMhAgNZYNsOxCJ82wbrs83P7TG9K6mR74"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "1038668564391-g3kd5itddr2se0iuf5o7bc4o6eaj7k4g.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "1038668564391-k2ti36dtt9gdg8tguiafa9t49jdd1q37.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.tenaris.digitaltally"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
