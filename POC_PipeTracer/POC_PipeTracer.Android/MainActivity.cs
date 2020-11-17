@@ -14,10 +14,10 @@ using POC_PipeTracer.Droid;
 
 namespace POC_PipeTracer.Droid
 {
-    [Activity(MainLauncher = true ,ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden
+    [Activity(MainLauncher = false ,ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden
      | Android.Content.PM.ConfigChanges.ScreenSize, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     //[Activity(Label = "POC_PipeTracer", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity ,INeoReader
+    public class MainActivity : BaseActivity ,INeoReader
     {
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -26,7 +26,6 @@ namespace POC_PipeTracer.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -49,7 +48,7 @@ namespace POC_PipeTracer.Droid
 
         private void ReadDM()
         {
-            CheckNeoReaderLicense();
+           // CheckNeoReaderLicense();
             if (true)
             {
                 ReadWithNeoReader();
