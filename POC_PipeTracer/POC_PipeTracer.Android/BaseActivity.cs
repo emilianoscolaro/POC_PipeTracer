@@ -15,7 +15,7 @@ using System.Text;
 namespace POC_PipeTracer.Droid
 {
     [Activity(Label = "")]
-    public class BaseActivity : AppCompatActivity
+    public class BaseActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private Dialog progressDialog = null;
 

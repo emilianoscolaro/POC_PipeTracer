@@ -76,6 +76,7 @@
     <Compile Include="InitActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="NeoReaderViewFinder.cs" />
+    <Compile Include="PermissionsManager.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
