@@ -45,6 +45,7 @@ namespace POC_PipeTracer.Droid
             });
 
             var permissionsManager = new PermissionsManager(this);
+            await permissionsManager.IsCameraPermissionGranted();
             var isPermissionGranted = await permissionsManager.IsStoragePermissionGranted();
             if (!isPermissionGranted)
             {
@@ -52,7 +53,7 @@ namespace POC_PipeTracer.Droid
                 ContinueToMainActivity();
                 return;
             }
-            await permissionsManager.IsCameraPermissionGranted();
+            
             // await permissionsManager.IsLocationPermissionGranted();
 
             // InitApp();
