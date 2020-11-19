@@ -1,4 +1,7 @@
-﻿using POC_PipeTracer.Services;
+﻿
+using Android.Content;
+using Android.OS;
+using POC_PipeTracer.Services;
 using POC_PipeTracer.Views;
 using System;
 using Xamarin.Forms;
@@ -8,6 +11,8 @@ namespace POC_PipeTracer
 {
     public partial class App : Application
     {
+
+        
 
         public App()
         {
@@ -19,6 +24,7 @@ namespace POC_PipeTracer
 
         protected override void OnStart()
         {
+            
         }
 
         protected override void OnSleep()
@@ -28,5 +34,8 @@ namespace POC_PipeTracer
         protected override void OnResume()
         {
         }
+
+
     }
+
 }
