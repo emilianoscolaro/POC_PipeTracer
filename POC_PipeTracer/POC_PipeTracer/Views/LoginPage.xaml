@@ -5,10 +5,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="POC_PipeTracer.Views.LoginPage"
+             xmlns:controls="clr-namespace:POC_PipeTracer.CustomControl"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGreenColor">#2FA999</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+
+            <Style x:Key="LableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#666666" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="40"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Camara" Command="{Binding LoginCommand}"/>
+        <StackLayout Margin="20,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Frame HasShadow="False" CornerRadius="5" BorderColor="{StaticResource BorderColor}" BackgroundColor="#F7F7F7">
+                <StackLayout>
+                    <Label Style="{StaticResource LableStyle}" Text="UserId" />
+                    <Frame Style="{StaticResource FrameStyle}">
+                        <controls:CustomEntry x:Name="txtUserId" Keyboard="Numeric" Style="{StaticResource EntryStyle}"></controls:CustomEntry>
+                    </Frame>
+                    <Label Style="{StaticResource LableStyle}" Text="Password"></Label>
+                    <Frame Style="{StaticResource FrameStyle}">
+                        <controls:CustomEntry IsPassword="True" x:Name="txtPassword" Style="{StaticResource EntryStyle}"></controls:CustomEntry>
+                    </Frame>
+                    <Button Margin="100,20" BorderRadius="6" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="{StaticResource LightGreenColor}" Text="Open NeoReader" Command="{Binding LoginCommand}"></Button>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
