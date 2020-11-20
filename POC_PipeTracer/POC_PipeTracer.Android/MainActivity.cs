@@ -10,6 +10,7 @@ using Android.Content;
 using Xamarin.Forms;
 using POC_PipeTracer.Droid;
 using System.Threading;
+using static Android.OS.PowerManager;
 
 [assembly: Dependency(typeof(MainActivity))]
 namespace POC_PipeTracer.Droid
@@ -18,6 +19,8 @@ namespace POC_PipeTracer.Droid
      | Android.Content.PM.ConfigChanges.ScreenSize, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : BaseActivity, INeoReader
     {
+        private WakeLock wakeLock;
+
         public MainActivity()
         {
             Java.Lang.JavaSystem.LoadLibrary("lavalib");
@@ -37,6 +40,25 @@ namespace POC_PipeTracer.Droid
             Instance = this;            
             LoadApplication(new App());
         }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            DisableAutoLock();
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            EnableAutoLock();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            EnableAutoLock();
+        }
+
         private async void ValidatePermissions()
         {
             var permissionsManager = new PermissionsManager(Instance);
@@ -78,6 +100,18 @@ namespace POC_PipeTracer.Droid
             {
                 throw ex;
             }
+        }
+
+        private void DisableAutoLock()
+        {
+            PowerManager powerManager = (PowerManager)this.GetSystemService(Context.PowerService);
+            wakeLock = powerManager.NewWakeLock(WakeLockFlags.Full, "My Lock");
+            wakeLock.Acquire();
+        }
+
+        private void EnableAutoLock()
+        {
+            wakeLock.Release();
         }
     }
 }
