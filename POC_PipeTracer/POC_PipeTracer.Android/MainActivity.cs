@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -10,15 +9,23 @@ using POC_PipeTracer.Droid.Api;
 using Android.Content;
 using Xamarin.Forms;
 using POC_PipeTracer.Droid;
+using System.Threading;
+
 [assembly: Dependency(typeof(MainActivity))]
 
 namespace POC_PipeTracer.Droid
 {
-    [Activity(MainLauncher = false ,ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden
+    [Activity(Label="POC Pipe Tracer", MainLauncher = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden
      | Android.Content.PM.ConfigChanges.ScreenSize, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     //[Activity(Label = "POC_PipeTracer", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : BaseActivity ,INeoReader
+    public class MainActivity : BaseActivity, INeoReader
     {
+        public MainActivity()
+        {
+            Java.Lang.JavaSystem.LoadLibrary("lavalib");
+        }
+
+        internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -30,60 +37,57 @@ namespace POC_PipeTracer.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            ValidatePermissions();
+            Instance = this;            
             LoadApplication(new App());
         }
+
+        private async void ValidatePermissions()
+        {
+            var permissionsManager = new PermissionsManager(Instance);
+            await permissionsManager.IsCameraPermissionGranted();
+            var isPermissionGranted = await permissionsManager.IsStoragePermissionGranted();
+            if (!isPermissionGranted)
+            {
+                Finish();
+                return;
+            }
+            NeoReaderLicense.LicenseIsValid(Instance);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-
-        private bool _validNeoReaderLicense = false;
-        private void CheckNeoReaderLicense()
-        {
-            _validNeoReaderLicense = NeoReaderLicense.LicenseIsValid(this);
-        }
-
-
         private void ReadDM()
-        {
-           // CheckNeoReaderLicense();
-            if (true)
-            {
-                ReadWithNeoReader();
-            }
+        {            
+            if (NeoReaderLicense.LicenseIsValid(Instance)) { ReadWithNeoReader(); }
         }
-
+                
         private void ReadWithNeoReader()
         {
-            // Shared.Model.Tally.Totals totals = _headerFragment.GetData();
-
             try
             {
-            Intent intent = new Intent(this, typeof(NeoReaderViewFinder));
-            intent.SetFlags(ActivityFlags.NoHistory);
-            intent.PutExtra("txtRnLength", "test");
-            intent.PutExtra("txtOvLength", "test");
-            intent.PutExtra("txtWeight", "test");
-            intent.PutExtra("txtCount", "test");
-
-            StartActivityForResult(intent, 1);
-
+                Intent intent = new Intent(Instance, typeof(NeoReaderViewFinder));
+                intent.SetFlags(ActivityFlags.NoHistory);
+                intent.PutExtra("txtRnLength", "test");
+                intent.PutExtra("txtOvLength", "test");
+                intent.PutExtra("txtWeight", "test");
+                intent.PutExtra("txtCount", "test");
+                Instance.StartActivityForResult(intent,1);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-
         }
 
-         void INeoReader.ReadDM()
+        void INeoReader.ReadDM()
         {
             ReadDM();
-           
         }
     }
 }

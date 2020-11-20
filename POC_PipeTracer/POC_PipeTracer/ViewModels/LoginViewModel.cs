@@ -17,8 +17,8 @@ namespace POC_PipeTracer.ViewModels
 
         private  void OnLoginClicked(object obj)
         {
-            INeoReader callService = DependencyService.Get<INeoReader>();
-            callService.ReadDM();
+            DependencyService.Register<INeoReader>();
+            DependencyService.Get<INeoReader>().ReadDM();            
         }
     }
 }
