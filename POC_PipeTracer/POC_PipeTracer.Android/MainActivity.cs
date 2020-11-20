@@ -12,21 +12,17 @@ using POC_PipeTracer.Droid;
 using System.Threading;
 
 [assembly: Dependency(typeof(MainActivity))]
-
 namespace POC_PipeTracer.Droid
 {
     [Activity(Label="POC Pipe Tracer", MainLauncher = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.KeyboardHidden
      | Android.Content.PM.ConfigChanges.ScreenSize, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
-    //[Activity(Label = "POC_PipeTracer", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : BaseActivity, INeoReader
     {
         public MainActivity()
         {
             Java.Lang.JavaSystem.LoadLibrary("lavalib");
         }
-
         internal static MainActivity Instance { get; private set; }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -41,7 +37,6 @@ namespace POC_PipeTracer.Droid
             Instance = this;            
             LoadApplication(new App());
         }
-
         private async void ValidatePermissions()
         {
             var permissionsManager = new PermissionsManager(Instance);
@@ -54,18 +49,19 @@ namespace POC_PipeTracer.Droid
             }
             NeoReaderLicense.LicenseIsValid(Instance);
         }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
+        void INeoReader.ReadDM()
+        {
+            ReadDM();
+        }
         private void ReadDM()
         {            
             if (NeoReaderLicense.LicenseIsValid(Instance)) { ReadWithNeoReader(); }
-        }
-                
+        }                
         private void ReadWithNeoReader()
         {
             try
@@ -80,14 +76,8 @@ namespace POC_PipeTracer.Droid
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-        }
-
-        void INeoReader.ReadDM()
-        {
-            ReadDM();
         }
     }
 }
